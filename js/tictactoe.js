@@ -1,6 +1,6 @@
 $(function() {
 
-  //### 'jquery' UI elements for game manipulation
+  //### 'jquery' UI  elements for game manipulation
   //var game              =    // the game container
   //var board             =    // the board  container
   var status_indicators = $('#teams li');   // status bar container
