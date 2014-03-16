@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="gameApp">
   <head>
     <title>TIC TAC TOE</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+      <script src="js/tictacapp.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/reset.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
-  <body>
+  <body >
 
-     <div id="game">
+     <div id="game" ng-controller="ticTacCtrl">
        <ul id="teams">
-        <li>
-          <img src="">
+        <li ng-repeat="player in players">
+          <img src="{{player.img_url}}">
           <h2>Team <span class="team"></span></h2>
           <h3 class="player"></h3>
-        </li>
-        <li>
-          <img src="">
-          <h2>Team <span class="team"></span></h2>
-          <h3 class="player"></h3>
+          {{player.name}}
         </li>
       </ul>
-      <div id="board">
+      <div id="board" >
+        <div ng-click="show_id($index)" ng-repeat="tile in tiles" id="tile{{tile.id}}" class="tile">
+        {{tile.team}}
+        </div>
       </div>
       <div id="results">
         <h1></h1>
@@ -31,7 +33,7 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script src="js/underscore.min.js"></script>
-  <script src="js/tictactoe.js"></script>
+ 
   </body>
 </html>
 
