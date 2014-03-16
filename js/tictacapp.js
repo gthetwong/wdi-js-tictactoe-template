@@ -25,13 +25,9 @@ $scope.players = [                         // player data
     }
   ];
 
+$scope.initialize = function(){
 
 $scope.turns  = 0;                         // elapsed turns
-if ($scope.turns % 2 === 0){
-$scope.current_player= $scope.players[0];
-} else {
-  $scope.current_player= $scope.players[1];
-}
 
   //### There are eight winning combos, the first two are supplied.
   //### What are the other six? Add 'em.
@@ -59,9 +55,32 @@ $scope.tiles = [
   {id: 8,
   team: ""},
   ];
-
-  $scope.show_id = function(id){
-    $scope.tiles[id].team = $scope.current_player.marker;
 };
 
+$scope.active_player = function(){
+
+  if ($scope.turns % 2 === 1){
+    $scope.current_player= $scope.players[0];
+  } else {
+    $scope.current_player= $scope.players[1];
+  }
+
+};
+
+
+
+$scope.mark_sqr = function(id){
+  $scope.active_player();
+  // console.log($scope.current_player.marker);
+  if ($scope.tiles[id].team===""){
+    $scope.tiles[id].team = $scope.current_player.marker;
+    $scope.turns ++;
+  } else {
+    console.log("space taken");
+  }
+  console.log($scope.turns);   
+};
+
+
+$scope.initialize();
 }]);

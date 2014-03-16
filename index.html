@@ -20,7 +20,7 @@
         </li>
       </ul>
       <div id="board" >
-        <div ng-click="show_id($index)" ng-repeat="tile in tiles" id="tile{{tile.id}}" class="tile">
+        <div ng-click="mark_sqr($index)" ng-repeat="tile in tiles" id="tile{{tile.id}}" class="tile">
         {{tile.team}}
         </div>
       </div>
