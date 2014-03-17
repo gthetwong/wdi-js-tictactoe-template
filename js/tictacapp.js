@@ -55,6 +55,7 @@ $scope.tiles = [
   {id: 8,
   team: ""},
   ];
+
 };
 
 $scope.active_player = function(){
@@ -67,20 +68,60 @@ $scope.active_player = function(){
 
 };
 
-
-
 $scope.mark_sqr = function(id){
   $scope.active_player();
   // console.log($scope.current_player.marker);
   if ($scope.tiles[id].team===""){
     $scope.tiles[id].team = $scope.current_player.marker;
     $scope.turns ++;
+
   } else {
     console.log("space taken");
   }
-  console.log($scope.turns);   
+  $scope.track_tiles();
+  $scope.is_win();
+  if ($scope.status==="win"){
+    console.log("current_player is winner");
+  }
+};
+
+$scope.track_tiles = function(){
+  var marked_x = _.where($scope.tiles, {team:"X"});
+  var marked_o = _.where($scope.tiles, {team:"O"});
+  $scope.marked_x = [];
+  $scope.marked_o = [];
+  _.each(marked_x, function(tile){
+    $scope.marked_x.push(tile.id);
+    console.log($scope.marked_x);
+  });
+
+  _.each(marked_o, function(tile){
+    $scope.marked_o.push(tile.id);
+    console.log($scope.marked_o);
+  });
+
 };
 
 
+
+
+$scope.is_win = function(){
+
+_.each($scope.win_combos, function(line){
+      if(_.contains( $scope.marked_x, line[0]) && _.contains($scope.marked_x, line[1]) && _.contains($scope.marked_x, line[2]) ) {
+        $scope.status = "win";
+      }
+});
+
+_.each($scope.win_combos, function(line){
+      if(_.contains( $scope.marked_o, line[0]) && _.contains($scope.marked_o, line[1]) && _.contains($scope.marked_o, line[2]) ) {
+        $scope.status = "win";
+      }
+});
+
+};
+
 $scope.initialize();
+
+
 }]);
